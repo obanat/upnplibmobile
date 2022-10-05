@@ -167,7 +167,8 @@ public class UPNPRootDevice extends UPNPDevice
 			specVersionMajor = Integer.parseInt(rootCtx.getString("specVersion/major"));
 			specVersionMinor = Integer.parseInt(rootCtx.getString("specVersion/minor"));
 
-			if(!(specVersionMajor == 1 && specVersionMinor == 0))
+                        //fix version mismatch issue, works for upnp v1.1 devices, add proxy mapping OK
+			if(!(specVersionMajor == 1 && specVersionMinor < 2))
 			{
 				throw new IllegalStateException("Unsupported device version (" + specVersionMajor + "." + specVersionMinor + ")");
 			}
